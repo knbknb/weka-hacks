@@ -12,7 +12,7 @@
 jdbcDriver=org.sqlite.JDBC
 
 # database URL
-jdbcURL=jdbc:sqlite:/path/to/database.db
+jdbcURL=jdbc:sqlite:/home/knut/Documents/moocs/weka/db/weka-database.db
 
 # specific data types
 # string, getString() = 0;    --> nominal
@@ -26,9 +26,23 @@ jdbcURL=jdbc:sqlite:/path/to/database.db
 # date, getDate() = 8;        --> date
 # text, getString() = 9;      --> string
 # time, getTime() = 10;       --> date
+#SQLITE DATATYPES
+#NULL. The value is a NULL value.
+null=9
+#INTEGER. The value is a signed integer, stored in 1, 2, 3, 4, 6, or 8 bytes depending on the magnitude of the value.
+integer=5
+#REAL. The value is a floating point value, stored as an 8-byte IEEE floating point number.
+float=6
+#TEXT. The value is a text string, stored using the database encoding (UTF-8, UTF-16BE or UTF-16LE).
+
+TEXT=9
+text=9
+#BLOB. The value is a blob of data, stored exactly as it was input.
+
 
 # other options
 CREATE_DOUBLE=DOUBLE
+CREATE_STRING=varchar(2000)
 CREATE_STRING=TEXT
 CREATE_INT=INT
 CREATE_DATE=DATETIME
@@ -36,6 +50,8 @@ DateFormat=yyyy-MM-dd HH:mm:ss
 checkUpperCaseNames=false
 checkLowerCaseNames=false
 checkForTable=true
+
+
 
 # All the reserved keywords for this database
 # Based on the keywords listed at the following URL (2009-04-13):
