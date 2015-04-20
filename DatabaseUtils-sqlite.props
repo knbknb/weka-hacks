@@ -1,18 +1,19 @@
-# Database settings for Microsoft SQL Server 2005 Express Edition
+# Database settings for sqlite 3.x
 #
 # General information on database access can be found here:
 # http://weka.wikispaces.com/Databases
 #
-# url:     http://www.microsoft.com/
-# jdbc:    http://msdn2.microsoft.com/en-us/data/aa937724.aspx
+# url:     http://www.sqlite.org/
+# jdbc:    http://www.zentus.com/sqlitejdbc/
 # author:  Fracpete (fracpete at waikato dot ac dot nz)
 # version: $Revision: 5836 $
 
 # JDBC driver (comma-separated list)
-jdbcDriver=org.sqlite.JDBC,net.sourceforge.jtds.jdbc.Driver
+jdbcDriver=org.sqlite.JDBC,
 
 # database URL
-jdbcURL=jdbc:jtds:sqlserver://mycomp.mycorp.com:1433;DatabaseName=mydb;user=xxx;password=yy;
+jdbcURL=jdbc:sqlite:/opt/smallapps/phpliteadmin/db/weka1.sqlite
+#jdbcURL=jdbc:sqlite:/home/knut/Documents/moocs/weka/db/weka-database.db
 
 # specific data types
 # string, getString() = 0;    --> nominal
@@ -26,24 +27,24 @@ jdbcURL=jdbc:jtds:sqlserver://mycomp.mycorp.com:1433;DatabaseName=mydb;user=xxx;
 # date, getDate() = 8;        --> date
 # text, getString() = 9;      --> string
 # time, getTime() = 10;       --> date
+#SQLITE DATATYPES
+#NULL. The value is a NULL value.
+null=9
+#INTEGER. The value is a signed integer, stored in 1, 2, 3, 4, 6, or 8 bytes depending on the magnitude of the value.
+integer=5
+#REAL. The value is a floating point value, stored as an 8-byte IEEE floating point number.
+float=6
+#TEXT. The value is a text string, stored using the database encoding (UTF-8, UTF-16BE or UTF-16LE).
 
-varchar=0
-float=2
-numeric=2
-tinyint=3
-int=5
-bigint=6
-nvarchar=9
-nchar=9
-char=9
-decimal=2
-bit=1
-smallint=5
-date=8
+TEXT=9
+text=9
+#BLOB. The value is a blob of data, stored exactly as it was input.
+
 
 # other options
-CREATE_DOUBLE=DOUBLE PRECISION
-CREATE_STRING=VARCHAR(8000)
+CREATE_DOUBLE=DOUBLE
+CREATE_STRING=varchar(2000)
+CREATE_STRING=TEXT
 CREATE_INT=INT
 CREATE_DATE=DATETIME
 DateFormat=yyyy-MM-dd HH:mm:ss
@@ -51,189 +52,131 @@ checkUpperCaseNames=false
 checkLowerCaseNames=false
 checkForTable=true
 
+
+
 # All the reserved keywords for this database
 # Based on the keywords listed at the following URL (2009-04-13):
-# http://msdn.microsoft.com/en-us/library/ms189822(SQL.90).aspx
+# http://www.sqlite.org/lang_keywords.html
 Keywords=\
+  ABORT,\
   ADD,\
+  AFTER,\
   ALL,\
   ALTER,\
+  ANALYZE,\
   AND,\
-  ANY,\
   AS,\
   ASC,\
-  AUTHORIZATION,\
-  BACKUP,\
+  ATTACH,\
+  AUTOINCREMENT,\
+  BEFORE,\
   BEGIN,\
   BETWEEN,\
-  BREAK,\
-  BROWSE,\
-  BULK,\
   BY,\
   CASCADE,\
   CASE,\
+  CAST,\
   CHECK,\
-  CHECKPOINT,\
-  CLOSE,\
-  CLUSTERED,\
-  COALESCE,\
   COLLATE,\
   COLUMN,\
   COMMIT,\
-  COMPUTE,\
+  CONFLICT,\
   CONSTRAINT,\
-  CONTAINS,\
-  CONTAINSTABLE,\
-  CONTINUE,\
-  CONVERT,\
   CREATE,\
   CROSS,\
-  CURRENT,\
   CURRENT_DATE,\
   CURRENT_TIME,\
   CURRENT_TIMESTAMP,\
-  CURRENT_USER,\
-  CURSOR,\
   DATABASE,\
-  DBCC,\
-  DEALLOCATE,\
-  DECLARE,\
   DEFAULT,\
+  DEFERRABLE,\
+  DEFERRED,\
   DELETE,\
-  DENY,\
   DESC,\
-  DISK,\
+  DETACH,\
   DISTINCT,\
-  DISTRIBUTED,\
-  DOUBLE,\
   DROP,\
-  DUMP,\
+  EACH,\
   ELSE,\
   END,\
-  ERRLVL,\
   ESCAPE,\
   EXCEPT,\
-  EXEC,\
-  EXECUTE,\
+  EXCLUSIVE,\
   EXISTS,\
-  EXIT,\
-  EXTERNAL,\
-  FETCH,\
-  FILE,\
-  FILLFACTOR,\
+  EXPLAIN,\
+  FAIL,\
   FOR,\
   FOREIGN,\
-  FREETEXT,\
-  FREETEXTTABLE,\
   FROM,\
   FULL,\
-  FUNCTION,\
-  GOTO,\
-  GRANT,\
+  GLOB,\
   GROUP,\
   HAVING,\
-  HOLDLOCK,\
-  IDENTITY,\
-  IDENTITYCOL,\
-  IDENTITY_INSERT,\
   IF,\
+  IGNORE,\
+  IMMEDIATE,\
   IN,\
   INDEX,\
+  INDEXED,\
+  INITIALLY,\
   INNER,\
   INSERT,\
+  INSTEAD,\
   INTERSECT,\
   INTO,\
   IS,\
+  ISNULL,\
   JOIN,\
   KEY,\
-  KILL,\
   LEFT,\
   LIKE,\
-  LINENO,\
-  LOAD,\
-  NATIONAL,\
-  NOCHECK,\
-  NONCLUSTERED,\
+  LIMIT,\
+  MATCH,\
+  NATURAL,\
   NOT,\
+  NOTNULL,\
   NULL,\
-  NULLIF,\
   OF,\
-  OFF,\
-  OFFSETS,\
+  OFFSET,\
   ON,\
-  OPEN,\
-  OPENDATASOURCE,\
-  OPENQUERY,\
-  OPENROWSET,\
-  OPENXML,\
-  OPTION,\
   OR,\
   ORDER,\
   OUTER,\
-  OVER,\
-  PERCENT,\
-  PIVOT,\
   PLAN,\
-  PRECISION,\
+  PRAGMA,\
   PRIMARY,\
-  PRINT,\
-  PROC,\
-  PROCEDURE,\
-  PUBLIC,\
-  RAISERROR,\
-  READ,\
-  READTEXT,\
-  RECONFIGURE,\
+  QUERY,\
+  RAISE,\
   REFERENCES,\
-  REPLICATION,\
-  RESTORE,\
+  REGEXP,\
+  REINDEX,\
+  RELEASE,\
+  RENAME,\
+  REPLACE,\
   RESTRICT,\
-  RETURN,\
-  REVERT,\
-  REVOKE,\
   RIGHT,\
   ROLLBACK,\
-  ROWCOUNT,\
-  ROWGUIDCOL,\
-  RULE,\
-  SAVE,\
-  SCHEMA,\
-  SECURITYAUDIT,\
+  ROW,\
+  SAVEPOINT,\
   SELECT,\
-  SESSION_USER,\
   SET,\
-  SETUSER,\
-  SHUTDOWN,\
-  SOME,\
-  STATISTICS,\
-  SYSTEM_USER,\
   TABLE,\
-  TABLESAMPLE,\
-  TEXTSIZE,\
+  TEMP,\
+  TEMPORARY,\
   THEN,\
   TO,\
-  TOP,\
-  TRAN,\
   TRANSACTION,\
   TRIGGER,\
-  TRUNCATE,\
-  TSEQUAL,\
   UNION,\
   UNIQUE,\
-  UNPIVOT,\
   UPDATE,\
-  UPDATETEXT,\
-  USE,\
-  USER,\
+  USING,\
+  VACUUM,\
   VALUES,\
-  VARYING,\
   VIEW,\
-  WAITFOR,\
+  VIRTUAL,\
   WHEN,\
-  WHERE,\
-  WHILE,\
-  WITH,\
-  WRITETEXT
+  WHERE
 
 # The character to append to attribute names to avoid exceptions due to
 # clashes between keywords and attribute names
@@ -242,4 +185,5 @@ KeywordsMaskChar=_
 #flags for loading and saving instances using DatabaseLoader/Saver
 nominalToStringLimit=50
 idColumn=auto_generated_id
+
 
