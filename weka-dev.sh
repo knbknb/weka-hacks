@@ -4,7 +4,7 @@ export WEKA_JAR=$WEKA_HOME/weka.jar
 export PATH=$WEKA_HOME:$PATH
 CP="/usr/share/java/:/opt/dbvis9/jdbc/jtds/jtds.jar:/opt/database/sqlite/sqlite-jdbc.jar:$WEKA_JAR"
 echo "used CLASSPATH: $CP"
-DIR=/opt/smallapps/weka-dev/data/
+DIR=/opt/smallapps/weka-dev/
 echo "changing to '$DIR'"
 cd "$DIR"
 export WEKA_HOME=$DIR
